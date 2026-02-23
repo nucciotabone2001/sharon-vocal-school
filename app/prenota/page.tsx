@@ -4,7 +4,8 @@ import { useState } from "react";
 import Link from "next/link";
 import { db } from "@/firebase";
 import { collection, addDoc, serverTimestamp } from "firebase/firestore";
-import emailjs from "emailjs-com";
+import emailjs from "@emailjs/browser";
+
 
 export default function PrenotaPage() {
   const [name, setName] = useState("");
