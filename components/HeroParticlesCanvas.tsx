@@ -23,8 +23,10 @@ export default function HeroLiquidCanvas() {
     const canvas = canvasRef.current;
     if (!canvas) return;
 
-    const ctx = canvas.getContext("2d");
-    if (!ctx) return;
+    const context = canvas.getContext("2d");
+    if (!context) return;
+    const ctx: CanvasRenderingContext2D = context;
+
 
     // inizializza dimensioni in base all'elemento (più robusto di window.innerWidth)
     let width = (canvas.width = canvas.clientWidth || window.innerWidth);
