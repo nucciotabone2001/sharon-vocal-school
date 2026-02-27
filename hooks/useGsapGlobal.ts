@@ -44,7 +44,7 @@ export default function useGsapGlobal() {
     });
 
 // ANIMAZIONE PER LA SECTION PERFORMANCE
-gsap.utils.toArray(".perf-fade").forEach((el) => {
+gsap.utils.toArray<HTMLElement>(".perf-fade").forEach((el) => {
   gsap.fromTo(
     el,
     { opacity: 0, y: 30 },
