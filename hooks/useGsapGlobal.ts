@@ -9,7 +9,7 @@ gsap.registerPlugin(ScrollTrigger);
 export default function useGsapGlobal() {
   useEffect(() => {
     // FADE-UP GLOBALE
-    gsap.utils.toArray<HTMLElement>(".fade-up").forEach((el) => {
+    gsap.utils.toArray<HTMLElement>(".perf-fade").forEach((el) => {
       gsap.fromTo(
         el,
         { opacity: 0, y: 40 },
