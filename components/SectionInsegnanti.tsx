@@ -4,7 +4,6 @@ import { useGsapFadeIn } from "@/hooks/useGsapFadeIn";
 
 export default function SectionInsegnanti() {
   const titleRef = useGsapFadeIn(0);
-
   const teacher1 = useGsapFadeIn(0.2);
   const teacher2 = useGsapFadeIn(0.35);
 
@@ -19,8 +18,9 @@ export default function SectionInsegnanti() {
       }}
     >
       {/* TITOLO */}
-      <h2 className="fade-in"
+      <h2
         ref={titleRef}
+        className="fade-in"
         style={{
           fontSize: "1.2rem",
           letterSpacing: "0.18em",
@@ -32,93 +32,93 @@ export default function SectionInsegnanti() {
         I nostri insegnanti
       </h2>
 
-      {/* GRID INSEGNANTI - ORA SOLO 2 */}
-      <div className ="fade-in"
-        style={{
-          display: "grid",
-          gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))",
-          gap: "3rem",
-          alignItems: "start",
-        }}
-      >
+      {/* GRID RESPONSIVA */}
+      <div className="insegnanti-grid fade-in">
         {/* INSEGNANTE 1 */}
-        <div className ="fade-in"
-          ref={teacher1}
-          style={{
-            display: "flex",
-            flexDirection: "column",
-            gap: "1rem",
-            alignItems: "center",
-            textAlign: "center",
-            padding: "1rem",
-          }}
-        >
-          <img className ="fade-in"
+        <div ref={teacher1} className="insegnante-card fade-in">
+          <img
             src="/elements/foto_sha.jpg"
             alt="Sharon Tabone"
-            style={{
-              width: "260px",
-              height: "260px",
-              objectFit: "cover",
-              objectPosition: "50% 0%", // sposta l'immagine leggermente verso l'alto per evitare teste tagliate
-              borderRadius: "50%",
-              border: "6px solid rgba(201,168,106,0.12)",
-              boxShadow: "0 12px 30px rgba(0,0,0,0.6)",
-              transition: "transform 300ms ease",
-            }}
-            onMouseOver={(e) => (e.currentTarget.style.transform = "scale(1.03)")}
-            onMouseOut={(e) => (e.currentTarget.style.transform = "scale(1)")}
+            className="insegnante-img fade-in"
           />
 
-          <h3 className ="fade-in" style={{ fontSize: "1.3rem", fontWeight: 500 }}>Sharon Tabone</h3>
-          <p className ="fade-in" style={{ opacity: 0.85, margin: 0 }}>Vocal Coach • Canto Moderno</p>
+          <h3 className="fade-in">Sharon Tabone</h3>
+          <p className="fade-in" style={{ opacity: 0.85, margin: 0 }}>
+            formazione per ragazzi e adulti
+          </p>
 
-          {/* spazio per una breve descrizione/bio */}
-          <p className ="fade-in" style={{ opacity: 0.8, marginTop: "0.6rem", maxWidth: "40rem" }}>
-            Qui puoi aggiungere qualche riga che descriva l'insegnante: background, stile di insegnamento,
-            esperienze, e cosa lo rende unico. Puoi sostituire questo testo con la biografia vera.
+          <p className="fade-in insegnante-bio">
+            Diplomata al conservatorio in pop con un background di Soul, specializzata come vocal coach.
+            Il suo approccio personalizzato, empatico e orientato ai risultati aiuta ogni studente a scoprire e valorizzare
+            la propria voce, migliorare la tecnica e raggiungere i propri obiettivi
           </p>
         </div>
 
         {/* INSEGNANTE 2 */}
-        <div className ="fade-in"
-          ref={teacher2}
-          style={{
-            display: "flex",
-            flexDirection: "column",
-            gap: "1rem",
-            alignItems: "center",
-            textAlign: "center",
-            padding: "1rem",
-          }}
-        >
-          <img className ="fade-in"
+        <div ref={teacher2} className="insegnante-card fade-in">
+          <img
             src="/elements/laetitia.jpg"
             alt="Laetitia Ricotta"
-            style={{
-              width: "260px",
-              height: "260px",
-              objectFit: "cover",
-              objectPosition: "50% 20%", // stessa correzione per Laetitia
-              borderRadius: "50%",
-              border: "6px solid rgba(201,168,106,0.12)",
-              boxShadow: "0 12px 30px rgba(0,0,0,0.6)",
-              transition: "transform 300ms ease",
-            }}
-            onMouseOver={(e) => (e.currentTarget.style.transform = "scale(1.03)")}
-            onMouseOut={(e) => (e.currentTarget.style.transform = "scale(1)")}
+            className="insegnante-img fade-in"
           />
 
-          <h3 className ="fade-in" style={{ fontSize: "1.3rem", fontWeight: 500 }}>Laetitia Ricotta</h3>
-          <p className ="fade-in" style={{ opacity: 0.85, margin: 0 }}>Specializzazione</p>
+          <h3 className="fade-in">Laetitia Ricotta</h3>
+          <p className="fade-in" style={{ opacity: 0.85, margin: 0 }}>
+            formazione per bambini e adolescenti
+          </p>
 
-          {/* spazio per una breve descrizione/bio */}
-          <p className ="fade-in" style={{ opacity: 0.8, marginTop: "0.6rem", maxWidth: "40rem" }}>
-            Inserisci qui una breve bio di Laetitia: formazione, percorsi artistici, metodi di lavoro e
-            qualsiasi informazione utile ai futuri studenti.
+          <p className="fade-in insegnante-bio">
+            Diplomata al conservatorio in pop-rock, specializzata in didattica all'insegnamento e musical.
+            Il suo approccio è un percorso musicale strutturato su misura adatto per bambini e adolescenti per accompagnali nello sviluppo della voce e della musicalità
           </p>
         </div>
       </div>
+
+      {/* STILI RESPONSIVI */}
+      <style>{`
+        .insegnanti-grid {
+          display: grid;
+          grid-template-columns: 1fr;
+          gap: 3rem;
+        }
+
+        /* Desktop: 2 colonne */
+        @media (min-width: 800px) {
+          .insegnanti-grid {
+            grid-template-columns: repeat(2, 1fr);
+          }
+        }
+
+        .insegnante-card {
+          display: flex;
+          flex-direction: column;
+          gap: 1rem;
+          align-items: center;
+          text-align: center;
+          padding: 1rem;
+        }
+
+        .insegnante-img {
+          width: 260px;
+          height: 260px;
+          object-fit: cover;
+          object-position: 50% 0%;
+          border-radius: 50%;
+          border: 6px solid rgba(201,168,106,0.12);
+          box-shadow: 0 12px 30px rgba(0,0,0,0.6);
+          transition: transform 300ms ease;
+        }
+
+        .insegnante-img:hover {
+          transform: scale(1.03);
+        }
+
+        .insegnante-bio {
+          opacity: 0.8;
+          margin-top: 0.6rem;
+          max-width: 40rem;
+        }
+      `}</style>
     </section>
   );
 }

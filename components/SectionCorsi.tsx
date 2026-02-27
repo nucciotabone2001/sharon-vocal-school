@@ -1,3 +1,7 @@
+"use client";
+
+import { useGsapFadeIn } from "@/hooks/useGsapFadeIn";
+
 const pacchettiAdulti = [
   { title: "Lezione singola ", desc: "Per iniziare o lavorare su un aspetto specifico." },
   { title: "Pacchetto mensile", desc: "Un percorso costante per sviluppare tecnica, controllo e sicurezza." },
@@ -22,7 +26,8 @@ export default function SectionCorsi() {
       }}
     >
       {/* TITOLO */}
-      <h2 className="fade-in"
+      <h2
+        className="fade-in"
         style={{
           fontSize: "1.2rem",
           letterSpacing: "0.18em",
@@ -35,7 +40,8 @@ export default function SectionCorsi() {
       </h2>
 
       {/* ADULTI */}
-      <h3 className="fade-in"
+      <h3
+        className="fade-in"
         style={{
           fontSize: "1.1rem",
           letterSpacing: "0.12em",
@@ -44,29 +50,13 @@ export default function SectionCorsi() {
           marginBottom: "1.5rem",
         }}
       >
-        Adulti — 60 minuti · Insegnante: Sharon Tabone
+        Adulti — 60 minuti
       </h3>
 
-      <div className="fade-in"
-        style={{
-          display: "grid",
-          gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))",
-          gap: "2rem",
-          marginBottom: "4rem",
-        }}
-      >
+      {/* SLIDER MOBILE + GRID DESKTOP */}
+      <div className="pacchetti-container fade-in">
         {pacchettiAdulti.map((p) => (
-          <article className="fade-in"
-            key={p.title}
-            style={{
-              borderRadius: "1.2rem",
-              border: "1px solid #333",
-              padding: "2rem",
-              background:
-                "radial-gradient(circle at top left, #E8DCC811, transparent 60%), #111",
-              transition: "0.3s ease",
-            }}
-          >
+          <article className="pacchetto-card fade-in" key={p.title}>
             <h4 style={{ fontSize: "1.2rem", marginBottom: "0.8rem" }}>{p.title}</h4>
             <p style={{ fontSize: "1rem", lineHeight: 1.6 }}>{p.desc}</p>
           </article>
@@ -74,7 +64,8 @@ export default function SectionCorsi() {
       </div>
 
       {/* BAMBINI */}
-      <h3 className="fade-in"
+      <h3
+        className="fade-in"
         style={{
           fontSize: "1.1rem",
           letterSpacing: "0.12em",
@@ -83,38 +74,22 @@ export default function SectionCorsi() {
           marginBottom: "1.5rem",
         }}
       >
-        Bambini sotto i 10 anni — 40 minuti · Insegnante: Laetitia Ricotta
+        Bambini sotto i 10 anni — 40 minuti
       </h3>
 
-      <div className="fade-in"
-        style={{
-          display: "grid",
-          gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))",
-          gap: "2rem",
-          marginBottom: "4rem",
-        }}
-      >
+      <div className="pacchetti-container fade-in">
         {pacchettiBambini.map((p) => (
-          <article className="fade-in"
-            key={p.title}
-            style={{
-              borderRadius: "1.2rem",
-              border: "1px solid #333",
-              padding: "2rem",
-              background:
-                "radial-gradient(circle at top left, #E8DCC811, transparent 60%), #111",
-              transition: "0.3s ease",
-            }}
-          >
-            <h4 className="fade-in" style={{ fontSize: "1.2rem", marginBottom: "0.8rem" }}>{p.title}</h4>
-            <p className="fade-in" style={{ fontSize: "1rem", lineHeight: 1.6 }}>{p.desc}</p>
+          <article className="pacchetto-card fade-in" key={p.title}>
+            <h4 style={{ fontSize: "1.2rem", marginBottom: "0.8rem" }}>{p.title}</h4>
+            <p style={{ fontSize: "1rem", lineHeight: 1.6 }}>{p.desc}</p>
           </article>
         ))}
       </div>
 
       {/* MODALITÀ */}
       <div className="fade-in" style={{ marginTop: "3rem", maxWidth: "40rem" }}>
-        <h3 className="fade-in"
+        <h3
+          className="fade-in"
           style={{
             fontSize: "1.1rem",
             letterSpacing: "0.12em",
@@ -133,6 +108,50 @@ export default function SectionCorsi() {
           giorno, orario e modalità preferita.
         </p>
       </div>
+
+      {/* CSS RESPONSIVE */}
+      <style>{`
+        /* DESKTOP: griglia elegante */
+        .pacchetti-container {
+          display: grid;
+          grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+          gap: 2rem;
+          margin-bottom: 4rem;
+        }
+
+        /* CARD */
+        .pacchetto-card {
+          border-radius: 1.2rem;
+          border: 1px solid #333;
+          padding: 2rem;
+          background: radial-gradient(circle at top left, #E8DCC811, transparent 60%), #111;
+          min-width: 260px;
+          transition: 0.3s ease;
+        }
+
+        /* MOBILE: slider orizzontale */
+        @media (max-width: 800px) {
+          .pacchetti-container {
+            display: flex;
+            overflow-x: auto;
+            gap: 1.4rem;
+            padding-bottom: 1rem;
+            scroll-snap-type: x mandatory;
+            -webkit-overflow-scrolling: touch;
+          }
+
+          .pacchetto-card {
+            flex: 0 0 80%;
+            scroll-snap-align: start;
+            min-width: 80%;
+            max-width: 80%;
+          }
+
+          .pacchetti-container::-webkit-scrollbar {
+            display: none;
+          }
+        }
+      `}</style>
     </section>
   );
 }

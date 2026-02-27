@@ -11,129 +11,149 @@ export default function Navbar() {
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 10);
     const onResize = () => setIsMobile(window.innerWidth < 768);
+
     onResize();
     window.addEventListener("scroll", onScroll);
     window.addEventListener("resize", onResize);
+
     return () => {
       window.removeEventListener("scroll", onScroll);
       window.removeEventListener("resize", onResize);
     };
   }, []);
 
-  const linkColor = scrolled ? "#111" : "#fff";
-  const accent = '#C9A86A';
+  const accent = "#C9A86A";
 
   return (
     <nav
       className="fixed top-0 left-0 w-full z-50 transition-all duration-300"
       style={{
-        padding: "0.8rem 6vw",
+        padding: "1rem 6vw",
         display: "flex",
         justifyContent: "space-between",
         alignItems: "center",
-        backgroundColor: scrolled ? "rgba(255,255,255,0.3)" : "transparent",
-        backdropFilter: scrolled ? "blur(12px)" : "none",
-        borderBottom: scrolled ? "1px solid rgba(255,255,255,0.2)" : "none",
-        zIndex: 60,
+        backgroundColor: scrolled ? "rgba(0,0,0,0.45)" : "transparent",
+        backdropFilter: scrolled ? "blur(10px)" : "none",
+        borderBottom: scrolled ? "1px solid rgba(255,255,255,0.08)" : "none",
       }}
     >
-      {/* LOGO */}
-      <Link href="#hero" onClick={() => setMenuOpen(false)}>
-        <img
-          src="/elements/logo.png"
-          alt="Sharon Tabone Vocal School"
+      {/* BRAND NAME */}
+      <Link href="/" onClick={() => setMenuOpen(false)}>
+        <h1
           style={{
-            height: "40px",
-            cursor: "pointer",
-            transition: "0.3s ease",
+            fontFamily: "'slopp-script-one', cursive",
+            fontSize: "1.9rem",
+            color: "#fff",
+            margin: 0,
+            letterSpacing: "0.02em",
             opacity: scrolled ? 0.9 : 1,
+            transition: "0.3s ease",
           }}
-        />
+        >
+
+        </h1>
       </Link>
 
       {/* DESKTOP MENU */}
       {!isMobile && (
         <div
-          className="flex gap-8 text-[1rem]"
           style={{
-            color: linkColor,
-            fontWeight: 400,
+            display: "flex",
+            gap: "2.4rem",
+            fontSize: "1rem",
+            color: "#fff",
+            letterSpacing: "0.05em",
           }}
         >
-          <a href="#SectionSharon">Chi sono</a>
-          <a href="#SectionInsegnanti">Insegnanti</a>
-          <a href="#SectionCorsi">Corsi</a>
-          <a href="/prenota">Prenota</a>
+          <a href="#SectionSharon" className="nav-link">Chi sono</a>
+          <a href="#SectionInsegnanti" className="nav-link">Insegnanti</a>
+          <a href="#SectionCorsi" className="nav-link">Corsi</a>
+          <Link href="/prenota" className="nav-link" style={{ color: accent }}>
+            Prenota
+          </Link>
         </div>
       )}
 
       {/* MOBILE BURGER */}
       {isMobile && (
-        <div style={{ display: "flex", alignItems: "center" }}>
-          <button
-            aria-label="Apri menu"
-            onClick={() => setMenuOpen((s) => !s)}
-            style={{
-              width: 44,
-              height: 44,
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              borderRadius: 10,
-              background: scrolled ? "rgba(255,255,255,0.06)" : "rgba(255,255,255,0.04)",
-              border: "none",
-              cursor: "pointer",
-            }}
-          >
-            {/* simple hamburger / close icon */}
-            {!menuOpen ? (
-              <svg width="20" height="14" viewBox="0 0 20 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <rect width="20" height="2" rx="1" fill={linkColor} />
-                <rect y="6" width="20" height="2" rx="1" fill={linkColor} />
-                <rect y="12" width="20" height="2" rx="1" fill={linkColor} />
-              </svg>
-            ) : (
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M6 6L18 18" stroke={linkColor} strokeWidth="2" strokeLinecap="round" />
-                <path d="M6 18L18 6" stroke={linkColor} strokeWidth="2" strokeLinecap="round" />
-              </svg>
-            )}
-          </button>
-        </div>
+        <button
+          aria-label="Apri menu"
+          onClick={() => setMenuOpen((s) => !s)}
+          style={{
+            width: 44,
+            height: 44,
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            borderRadius: 10,
+            background: "rgba(255,255,255,0.08)",
+            border: "none",
+            cursor: "pointer",
+          }}
+        >
+          {!menuOpen ? (
+            <svg width="22" height="16" viewBox="0 0 20 14" fill="none">
+              <rect width="20" height="2" rx="1" fill="#fff" />
+              <rect y="6" width="20" height="2" rx="1" fill="#fff" />
+              <rect y="12" width="20" height="2" rx="1" fill="#fff" />
+            </svg>
+          ) : (
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+              <path d="M6 6L18 18" stroke="#fff" strokeWidth="2" strokeLinecap="round" />
+              <path d="M6 18L18 6" stroke="#fff" strokeWidth="2" strokeLinecap="round" />
+            </svg>
+          )}
+        </button>
       )}
 
-      {/* MOBILE MENU OVERLAY */}
+      {/* MOBILE MENU FULLSCREEN */}
       {isMobile && menuOpen && (
         <div
           style={{
             position: "fixed",
-            top: "64px",
-            right: 16,
-            left: 16,
-            zIndex: 70,
-            background: "rgba(10,10,10,0.98)",
-            borderRadius: 12,
-            padding: "1.25rem",
-            boxShadow: "0 10px 30px rgba(0,0,0,0.5)",
+            inset: 0,
+            background: "rgba(0,0,0,0.92)",
+            backdropFilter: "blur(12px)",
+            zIndex: 60,
             display: "flex",
             flexDirection: "column",
-            gap: "0.75rem",
+            padding: "6rem 2rem",
+            gap: "2rem",
           }}
         >
-          <a href="#SectionSharon" onClick={() => setMenuOpen(false)} style={{ padding: "0.6rem 0", color: accent, fontWeight: 700, textDecoration: 'none' }}>
+          <a href="#SectionSharon" onClick={() => setMenuOpen(false)} className="mobile-link">
             Chi sono
           </a>
-          <a href="#SectionInsegnanti" onClick={() => setMenuOpen(false)} style={{ padding: "0.6rem 0", color: accent, fontWeight: 700, textDecoration: 'none' }}>
+          <a href="#SectionInsegnanti" onClick={() => setMenuOpen(false)} className="mobile-link">
             Insegnanti
           </a>
-          <a href="#SectionCorsi" onClick={() => setMenuOpen(false)} style={{ padding: "0.6rem 0", color: accent, fontWeight: 700, textDecoration: 'none' }}>
+          <a href="#SectionCorsi" onClick={() => setMenuOpen(false)} className="mobile-link">
             Corsi
           </a>
-          <a href="/prenota" onClick={() => setMenuOpen(false)} style={{ padding: "0.6rem 0", color: accent, fontWeight: 700, textDecoration: 'none' }}>
+          <Link href="/prenota" onClick={() => setMenuOpen(false)} className="mobile-link" style={{ color: accent }}>
             Prenota
-          </a>
+          </Link>
         </div>
       )}
+
+      <style>{`
+        .nav-link {
+          color: #fff;
+          text-decoration: none;
+          transition: 0.3s ease;
+        }
+        .nav-link:hover {
+          color: ${accent};
+        }
+
+        .mobile-link {
+          font-size: 1.6rem;
+          color: #fff;
+          text-decoration: none;
+          letter-spacing: 0.05em;
+          text-align: center;
+        }
+      `}</style>
     </nav>
   );
 }

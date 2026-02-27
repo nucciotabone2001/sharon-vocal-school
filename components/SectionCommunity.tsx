@@ -20,7 +20,6 @@ export default function SectionCommunity() {
     >
       <h2
         style={{
-          fontFamily: "var(--font-title)",
           fontSize: "2.4rem",
           marginBottom: "3rem",
         }}

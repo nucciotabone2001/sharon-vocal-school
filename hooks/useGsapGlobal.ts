@@ -43,6 +43,25 @@ export default function useGsapGlobal() {
       );
     });
 
+// ANIMAZIONE PER LA SECTION PERFORMANCE
+gsap.utils.toArray(".perf-fade").forEach((el) => {
+  gsap.fromTo(
+    el,
+    { opacity: 0, y: 30 },
+    {
+      opacity: 1,
+      y: 0,
+      duration: 1.1,
+      ease: "power3.out",
+      scrollTrigger: {
+        trigger: el,
+        start: "top 85%",
+      },
+    }
+  );
+});
+
+
     // PARALLAX LEGGERO
     gsap.utils.toArray<HTMLElement>(".parallax").forEach((el) => {
       gsap.to(el, {
@@ -54,6 +73,49 @@ export default function useGsapGlobal() {
         },
       });
     });
+/*
+    // SLIDE FROM LEFT (mobile)
+    gsap.utils.toArray<HTMLElement>(".m-slide-left").forEach((el) => {
+      gsap.fromTo(
+        el,
+        { opacity: 0, x: -120 },
+        {
+          opacity: 1,
+          x: 0,
+          duration: 1.1,
+          ease: "power3.out",
+          overwrite: "auto",
+          scrollTrigger: {
+            trigger: el,
+            start: "top 80%",
+            toggleActions: "play none none none",
+          },
+        }
+      );
+    });
+
+    // SLIDE FROM RIGHT (mobile)
+    gsap.utils.toArray<HTMLElement>(".m-slide-right").forEach((el) => {
+      gsap.fromTo(
+        el,
+        { opacity: 0, x: 120 },
+        {
+          opacity: 1,
+          x: 0,
+          duration: 1.1,
+          ease: "power3.out",
+          overwrite: "auto",
+          scrollTrigger: {
+            trigger: el,
+            start: "top 80%",
+            toggleActions: "play none none none",
+          },
+        }
+      );
+    });
+*/
+
+
 
     // STAGGER AUTOMATICO (per liste)
     gsap.utils.toArray<HTMLElement>(".stagger-parent").forEach((parent) => {

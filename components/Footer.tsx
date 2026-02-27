@@ -22,18 +22,37 @@ export default function Footer() {
           gap: "3rem",
         }}
       >
-        {/* LOGO */}
-        <div style={{ flex: "1 1 200px" }}>
-          <img
-            src="/elements/logo.png"
-            alt="Sharon Tabone Vocal School"
+        {/* LOGO TIPOGRAFICO */}
+        <div style={{ flex: "1 1 240px" }}>
+          <h2
             style={{
-              width: "180px",
-              height: "auto",
+              fontFamily: "sloop-script-one",
+              fontSize: "clamp(2.2rem, 4vw, 3rem)",
+              margin: 0,
+              lineHeight: 1,
+              fontWeight: 300,
+              letterSpacing: "0.01em",
+              color: "#FFFFFF",
               opacity: 0.9,
             }}
-          />
+          >
+            Sharon Tabone
+          </h2>
+
+          <h3
+            style={{
+              fontFamily: "'Cormorant Garamond', serif",
+              fontSize: "clamp(0.9rem, 2vw, 1.2rem)",
+              marginTop: "0.2rem",
+              letterSpacing: "0.35em",
+              fontWeight: 300,
+              opacity: 0.7,
+            }}
+          >
+            VOCAL SCHOOL
+          </h3>
         </div>
+
 
         {/* CONTATTI */}
         <div style={{ flex: "1 1 200px" }}>
@@ -62,11 +81,11 @@ export default function Footer() {
           <p style={{ marginBottom: "0.6rem", opacity: 0.9 }}>
             <strong>Instagram:</strong>
             <a
-              href="https://instagram.com/sharontabone"
+              href="https://instagram.com/sharon.tabone"
               target="_blank"
               style={{ color: "#FFFFFF", textDecoration: "none", marginLeft: "0.3rem" }}
             >
-              @sharontabone
+              @sharon.tabone
             </a>
           </p>
 
@@ -94,17 +113,17 @@ export default function Footer() {
 
           <ul style={{ listStyle: "none", padding: 0, margin: 0, opacity: 0.9 }}>
             <li style={{ marginBottom: "0.6rem" }}>
-              <a href="#sharon" style={{ color: "#FFFFFF", textDecoration: "none" }}>
-                Chi è Sharon
+              <a href="#SectionSharon" style={{ color: "#FFFFFF", textDecoration: "none" }}>
+                Chi sono
               </a>
             </li>
             <li style={{ marginBottom: "0.6rem" }}>
-              <a href="#insegnanti" style={{ color: "#FFFFFF", textDecoration: "none" }}>
+              <a href="#SectionInsegnanti" style={{ color: "#FFFFFF", textDecoration: "none" }}>
                 Insegnanti
               </a>
             </li>
             <li style={{ marginBottom: "0.6rem" }}>
-              <a href="#corsi" style={{ color: "#FFFFFF", textDecoration: "none" }}>
+              <a href="#SectionCorsi" style={{ color: "#FFFFFF", textDecoration: "none" }}>
                 Corsi
               </a>
             </li>
@@ -140,6 +159,10 @@ export default function Footer() {
         @media (max-width: 600px) {
           .footer {
             padding: 3rem 5vw 2rem !important;
+          }
+
+          .footer h2 {
+            font-size: 2rem !important;
           }
         }
       `}</style>

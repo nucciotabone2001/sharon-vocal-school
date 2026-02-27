@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,200;0,300;0,400;0,600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,200;0,300;0,400;0,600&family=Merriweather:wght@300;400;700&display=swap');
 @import "tailwindcss";
 
 
@@ -43,4 +43,55 @@ body {
   text-transform: uppercase;
 }
 
+html, body { overflow-x: hidden; }
 
+/* Stili per gli elenchi delle sezioni */
+.section-bullets {
+  padding-left: 1.2rem; /* mostra il bullet con indent */
+  margin: 0;
+}
+.section-bullets li {
+  margin-bottom: 0.6rem;
+  list-style: disc; /* marker a pallino */
+  color: #fff; /* testo bianco su sfondo scuro */
+}
+
+.title-block {
+  display: flex;
+  align-items: flex-start;
+  gap: 1.2rem;
+  max-width: 55rem;
+  margin: 0 auto 3rem;
+}
+
+.title-bar {
+  width: 4px;
+  height: 100%;
+  background: #C9A86A;
+  border-radius: 2px;
+}
+
+.title-block h2 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(2.2rem, 2vw, 3.2rem);
+  line-height: 1.2;
+  margin: 0;
+}
+
+
+
+/* Numeri della sezione "Numeri" */
+.stat-number {
+font-family: 'Inter', sans-serif;
+font-weight: 700;
+color: #fff;
+margin-bottom: 0.5rem;
+font-size: 5rem; }
+
+@media (max-width: 800px) {
+  .section-bullets {
+    padding-left: 1rem;
+  }
+
+
+}

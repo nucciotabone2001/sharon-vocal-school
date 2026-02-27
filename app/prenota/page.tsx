@@ -12,6 +12,7 @@ export default function PrenotaPage() {
   const [email, setEmail] = useState("");
   const [availability, setAvailability] = useState("");
   const [notes, setNotes] = useState("");
+  const [age, setAge] = useState("");
 
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
@@ -39,10 +40,13 @@ export default function PrenotaPage() {
       await addDoc(collection(db, "prenotazioni"), {
         nome: name,
         email: email,
+        eta: age,
         disponibilita: availability,
         note: notes,
         timestamp: serverTimestamp(),
       });
+
+
 
       emailjs.send(
         "service_3iempju",
@@ -50,12 +54,14 @@ export default function PrenotaPage() {
         {
           nome: name,
           email: email,
+          eta: age,
           disponibilita: availability,
           note: notes,
           timestamp: new Date().toLocaleString("it-IT"),
         },
         "fEwbQqUFxzhaA2sBw"
       );
+
 
       setSuccess(true);
     } catch (error) {
@@ -154,7 +160,7 @@ export default function PrenotaPage() {
               {/* Nome */}
               <input
                 type="text"
-                placeholder="Nome"
+                placeholder="Nome e Cognome"
                 value={name}
                 onChange={(e) => setName(e.target.value)}
                 style={{
@@ -172,6 +178,29 @@ export default function PrenotaPage() {
                   {errors.name}
                 </p>
               )}
+
+              {/* Età */}
+              <input
+                type="number"
+                placeholder="Età"
+                value={age}
+                onChange={(e) => setAge(e.target.value)}
+                style={{
+                  width: "100%",
+                  padding: "0.9rem",
+                  marginBottom: "0.3rem",
+                  borderRadius: "0.5rem",
+                  border: "1px solid #333",
+                  background: "#0A0A0A",
+                  color: "#FFFFFF",
+                }}
+              />
+              {errors.age && (
+                <p style={{ color: "#D9534F", marginBottom: "1rem" }}>
+                  {errors.age}
+                </p>
+              )}
+
 
               {/* Email */}
               <input
@@ -277,7 +306,7 @@ export default function PrenotaPage() {
             </h2>
             <p style={{ fontSize: "1.2rem", lineHeight: 1.6, opacity: 0.9 }}>
               Grazie <strong>{name}</strong>, abbiamo ricevuto la tua richiesta di
-              lezione di prova. Ti contatteremo presto per concordare giorno e ora.
+              lezione di prova. Ti contatteremo presto per confermare giorno e ora.
             </p>
           </div>
         )}
