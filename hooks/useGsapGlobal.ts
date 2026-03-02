@@ -73,47 +73,8 @@ gsap.utils.toArray<HTMLElement>(".perf-fade").forEach((el) => {
         },
       });
     });
-/*
-    // SLIDE FROM LEFT (mobile)
-    gsap.utils.toArray<HTMLElement>(".m-slide-left").forEach((el) => {
-      gsap.fromTo(
-        el,
-        { opacity: 0, x: -120 },
-        {
-          opacity: 1,
-          x: 0,
-          duration: 1.1,
-          ease: "power3.out",
-          overwrite: "auto",
-          scrollTrigger: {
-            trigger: el,
-            start: "top 80%",
-            toggleActions: "play none none none",
-          },
-        }
-      );
-    });
 
-    // SLIDE FROM RIGHT (mobile)
-    gsap.utils.toArray<HTMLElement>(".m-slide-right").forEach((el) => {
-      gsap.fromTo(
-        el,
-        { opacity: 0, x: 120 },
-        {
-          opacity: 1,
-          x: 0,
-          duration: 1.1,
-          ease: "power3.out",
-          overwrite: "auto",
-          scrollTrigger: {
-            trigger: el,
-            start: "top 80%",
-            toggleActions: "play none none none",
-          },
-        }
-      );
-    });
-*/
+
 
 
 

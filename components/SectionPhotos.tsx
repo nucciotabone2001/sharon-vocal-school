@@ -1,6 +1,11 @@
 "use client";
 
 import { useGsapPhotoParallax } from "@/hooks/useGsapPhotoParallax";
+import { useEffect } from "react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+gsap.registerPlugin(ScrollTrigger);
 
 export default function SectionPhotos() {
   const photos = [
@@ -13,23 +18,63 @@ export default function SectionPhotos() {
   const ref2 = useGsapPhotoParallax(3, "right");
   const ref3 = useGsapPhotoParallax(5, "left");
 
+  // ANIMAZIONI MOBILE
+  useEffect(() => {
+    if (window.innerWidth > 700) return;
+
+    gsap.utils.toArray(".m-slide-right").forEach((el) => {
+      gsap.fromTo(
+        el,
+        { opacity: 0, x: 120 },
+        {
+          opacity: 1,
+          x: 0,
+          duration: 1.1,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: el,
+            start: "top 85%",
+          },
+        }
+      );
+    });
+
+    gsap.utils.toArray(".m-slide-left").forEach((el) => {
+      gsap.fromTo(
+        el,
+        { opacity: 0, x: -120 },
+        {
+          opacity: 1,
+          x: 0,
+          duration: 1.1,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: el,
+            start: "top 85%",
+          },
+        }
+      );
+    });
+  }, []);
+
   return (
     <section
       style={{
         width: "100%",
-        padding: "6rem 8vw 6rem", // ridotto leggermente il padding-top rispetto a prima
+        padding: "6rem 8vw 6rem",
         backgroundColor: "#0A0A0A",
         color: "#FFFFFF",
+        overflow: "visible",
       }}
     >
       <div className="photos-wrapper">
-        <img ref={ref1} src={photos[0]} className="photo photo-a parallax" />
-        <img ref={ref2} src={photos[1]} className="photo photo-b parallax" />
-        <img ref={ref3} src={photos[2]} className="photo photo-c parallax" />
+        <img ref={ref1} src={photos[0]} className="photo photo-a parallax m-slide-right" />
+        <img ref={ref2} src={photos[1]} className="photo photo-b parallax m-slide-left" />
+        <img ref={ref3} src={photos[2]} className="photo photo-c parallax m-slide-right" />
       </div>
 
       <style>{`
-        /* DESKTOP (collage originale) */
+        /* DESKTOP COLLAGE */
         .photos-wrapper {
           position: relative;
           width: 100%;
@@ -45,39 +90,47 @@ export default function SectionPhotos() {
         }
 
         .photo-a {
-          top: -8%;
-          left: 10%;
-          width: 32%;
+          top: -6%;
+          left: 12%;
+          width: 30%;
           transform: rotate(-4deg);
         }
 
         .photo-b {
-          top: 18%;
-          right: 10%;
-          width: 30%;
+          top: 20%;
+          right: 12%;
+          width: 28%;
           transform: rotate(3deg);
         }
 
         .photo-c {
-          bottom: 0%;
-          left: 38%;
-          width: 28%;
+          bottom: -2%;
+          left: 40%;
+          width: 26%;
           transform: rotate(5deg);
         }
 
-        /* MOBILE: layout verticale e reset completo delle posizioni assolute */
+        /* ULTRA-WIDE FIX */
+        @media (min-width: 1600px) {
+          .photos-wrapper {
+            height: 750px;
+          }
+          .photo {
+            max-width: 420px;
+          }
+        }
+
+        /* MOBILE VERSIONE DRITTA + SLIDE-IN */
         @media (max-width: 700px) {
           .photos-wrapper {
             display: flex;
             flex-direction: column;
-            gap: 3.5rem; /* maggiore spazio tra le immagini */
+            gap: 3.5rem;
             height: auto;
-            padding-top: 2.5rem; /* spazio extra per evitare sovrapposizioni con la sezione sopra */
-            padding-bottom: 2.5rem; /* spazio extra sotto */
-            box-sizing: border-box;
+            padding-top: 2rem;
+            padding-bottom: 2rem;
           }
 
-          /* NOTE: forziamo il comportamento "in-flow" delle immagini su mobile e annulliamo tutte le posizioni assolute e trasformazioni */
           .photo {
             position: relative !important;
             width: 100% !important;
@@ -88,24 +141,14 @@ export default function SectionPhotos() {
             top: auto !important;
             bottom: auto !important;
             margin: 0 auto;
-            max-height: 520px; /* limita l'altezza per evitare immagini troppo grandi */
+            max-height: 520px;
             object-fit: cover;
+            opacity: 0; /* per animazione */
           }
 
-          /* assicurarsi che non rimangano offset specifici */
           .photo-a, .photo-b, .photo-c {
-            top: auto !important;
-            left: auto !important;
-            right: auto !important;
-            bottom: auto !important;
             transform: none !important;
-            width: 100% !important;
           }
-
-          /* centratura visiva per ogni foto all'interno del column layout */
-          .photo-a { align-self: center; }
-          .photo-b { align-self: center; }
-          .photo-c { align-self: center; }
         }
       `}</style>
     </section>

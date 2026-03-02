@@ -65,9 +65,9 @@ export default function Navbar() {
             letterSpacing: "0.05em",
           }}
         >
-          <a href="#SectionSharon" className="nav-link">Chi sono</a>
-          <a href="#SectionInsegnanti" className="nav-link">Insegnanti</a>
-          <a href="#SectionCorsi" className="nav-link">Corsi</a>
+          <a href="/#SectionSharon" className="nav-link">Chi sono</a>
+          <a href="/#SectionInsegnanti" className="nav-link">Insegnanti</a>
+          <a href="/#SectionCorsi" className="nav-link">Corsi</a>
           <Link href="/prenota" className="nav-link" style={{ color: accent }}>
             Prenota
           </Link>

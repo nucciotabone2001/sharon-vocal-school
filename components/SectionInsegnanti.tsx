@@ -44,7 +44,7 @@ export default function SectionInsegnanti() {
 
           <h3 className="fade-in">Sharon Tabone</h3>
           <p className="fade-in" style={{ opacity: 0.85, margin: 0 }}>
-            formazione per ragazzi e adulti
+            Formazione per ragazzi e adulti
           </p>
 
           <p className="fade-in insegnante-bio">
@@ -64,7 +64,7 @@ export default function SectionInsegnanti() {
 
           <h3 className="fade-in">Laetitia Ricotta</h3>
           <p className="fade-in" style={{ opacity: 0.85, margin: 0 }}>
-            formazione per bambini e adolescenti
+            Formazione per bambini e adolescenti
           </p>
 
           <p className="fade-in insegnante-bio">

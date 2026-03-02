@@ -101,7 +101,7 @@ export default function SectionNumeri() {
 
         {/* 4 */}
         <div className="numero-card">
-          <div className="stat-number" data-target="150">
+          <div className="stat-number" data-target="750">
             +750
           </div>
           <div className="numero-label">lezioni all'anno</div>

@@ -3,16 +3,58 @@
 import { useGsapFadeIn } from "@/hooks/useGsapFadeIn";
 
 const pacchettiAdulti = [
-  { title: "Lezione singola ", desc: "Per iniziare o lavorare su un aspetto specifico." },
-  { title: "Pacchetto mensile", desc: "Un percorso costante per sviluppare tecnica, controllo e sicurezza." },
-  { title: "Pacchetto semestrale", desc: "Crescita strutturata e progressiva nel tempo." },
-  { title: "Pacchetto annuale", desc: "Il percorso completo per trasformare la tua voce." },
+  {
+    title: "Lezione singola",
+    desc: [
+      "1 lezione individuale da 60 minuti.",
+      "Perfetta per provare prima di iniziare un percorso."
+    ]
+  },
+  {
+    title: "Pacchetto mensile",
+    desc: [
+      "4 lezioni individuali da 60 minuti.",
+      "Validità: 1 mese dalla data di acquisto.",
+      "Ottimo per chi vuole costanza senza impegno lungo."
+    ]
+  },
+  {
+    title: "Pacchetto semestrale",
+    desc: [
+      "24 lezioni individuali da 60 minuti.",
+      "Validità: 6 mesi dalla data di acquisto.",
+      "Un percorso che assicura continuità, progressione costante e risultati tangibili."
+    ]
+  },
+  {
+    title: "Pacchetto annuale",
+    desc: [
+      "40 lezioni individuali da 60 minuti.",
+      "Validità: 10 mesi.",
+      "Garantisce miglioramento esponenziale, crescita strutturata e regolare."
+    ]
+  }
 ];
 
 const pacchettiBambini = [
-  { title: "Pacchetto mensile ", desc: "Lezioni pensate per bambini sotto i 10 anni, con approccio ludico e musicale." },
-  { title: "Pacchetto semestrale ", desc: "Percorso educativo che sviluppa musicalità, ritmo e fiducia." },
+  {
+    title: "Pacchetto mensile",
+    desc: [
+      "4 lezioni individuali da 40 minuti.",
+      "Validità: 1 mese dalla data di acquisto.",
+      "Approccio ludico e musicale. Perfetto per bambini sotto i 10 anni"
+    ]
+  },
+  {
+    title: "Pacchetto semestrale",
+    desc: [
+      "24 lezioni individuali da 40 minuti.",
+      "Validità: 6 mesi dalla data di acquisto.",
+      "Percorso educativo che sviluppa musicalità, ritmo e fiducia."
+    ]
+  }
 ];
+
 
 export default function SectionCorsi() {
   return (
@@ -50,15 +92,39 @@ export default function SectionCorsi() {
           marginBottom: "1.5rem",
         }}
       >
-        Adulti — 60 minuti
+        Ragazzi e adulti — 60 minuti
       </h3>
 
       {/* SLIDER MOBILE + GRID DESKTOP */}
       <div className="pacchetti-container fade-in">
         {pacchettiAdulti.map((p) => (
           <article className="pacchetto-card fade-in" key={p.title}>
-            <h4 style={{ fontSize: "1.2rem", marginBottom: "0.8rem" }}>{p.title}</h4>
-            <p style={{ fontSize: "1rem", lineHeight: 1.6 }}>{p.desc}</p>
+            <h4 style={{ fontSize: "1.2rem", marginBottom: "0.8rem", fontWeight: 700 }}>
+              {p.title}
+            </h4>
+
+            <ul
+              style={{
+                margin: 0,
+                display: "flex",
+                flexDirection: "column",
+                gap: "0.4rem",
+              }}
+            >
+              {p.desc.map((line, i) => (
+                <li
+                  key={i}
+                  style={{
+                    fontSize: "1rem",
+                    lineHeight: 1.5,
+                    opacity: 0.9,
+                  }}
+                >
+                  {line}
+                </li>
+              ))}
+            </ul>
+
           </article>
         ))}
       </div>
@@ -80,8 +146,32 @@ export default function SectionCorsi() {
       <div className="pacchetti-container fade-in">
         {pacchettiBambini.map((p) => (
           <article className="pacchetto-card fade-in" key={p.title}>
-            <h4 style={{ fontSize: "1.2rem", marginBottom: "0.8rem" }}>{p.title}</h4>
-            <p style={{ fontSize: "1rem", lineHeight: 1.6 }}>{p.desc}</p>
+            <h4 style={{ fontSize: "1.2rem", marginBottom: "0.8rem", fontWeight: 700 }}>
+              {p.title}
+            </h4>
+
+            <ul
+              style={{
+                margin: 0,
+                display: "flex",
+                flexDirection: "column",
+                gap: "0.4rem",
+              }}
+            >
+              {p.desc.map((line, i) => (
+                <li
+                  key={i}
+                  style={{
+                    fontSize: "1rem",
+                    lineHeight: 1.5,
+                    opacity: 0.9,
+                  }}
+                >
+                  {line}
+                </li>
+              ))}
+            </ul>
+
           </article>
         ))}
       </div>
