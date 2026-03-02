@@ -22,7 +22,7 @@ export default function SectionPhotos() {
   useEffect(() => {
     if (window.innerWidth > 700) return;
 
-    gsap.utils.toArray(".m-slide-right").forEach((el) => {
+    gsap.utils.toArray<HTMLElement>(".m-slide-right").forEach((el) => {
       gsap.fromTo(
         el,
         { opacity: 0, x: 120 },
@@ -39,7 +39,7 @@ export default function SectionPhotos() {
       );
     });
 
-    gsap.utils.toArray(".m-slide-left").forEach((el) => {
+    gsap.utils.toArray<HTMLElement>(".m-slide-right").forEach((el) => {
       gsap.fromTo(
         el,
         { opacity: 0, x: -120 },
